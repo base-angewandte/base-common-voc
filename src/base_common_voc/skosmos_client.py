@@ -161,6 +161,27 @@ class SkosmosClient:
         graph.parse(data=req.content, format='xml')
         return graph
 
+    def json_data(self, uri, vocid=None):
+        """Return all information about a particular URI.
+
+        If a vocabulary ID is given, look up the information from that
+        vocabulary; otherwise, let Skosmos decide. The data is returned
+        as a JSON object.
+        """
+
+        payload = {'uri': uri, 'format': 'application/ld+json'}
+
+        url = (
+            f'{self.api_base}{vocid}/data'
+            if vocid is not None
+            else f'{self.api_base}data'
+        )
+
+        req = requests.get(url, params=payload, timeout=REQUESTS_TIMEOUT)
+        req.raise_for_status()
+
+        return req.json()
+
     def types(self, lang, vocid=None):
         """Return information about concept and collection types available on
         the API endpoint, either from within a given vocabulary or globally.
