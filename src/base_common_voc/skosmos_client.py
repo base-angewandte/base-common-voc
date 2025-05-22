@@ -144,7 +144,7 @@ class SkosmosClient:
 
         If a vocabulary ID is given, look up the information from that
         vocabulary; otherwise, let Skosmos decide. The data is returned
-        as an rdflib Graph.
+        as a rdflib Graph.
         """
 
         payload = {'uri': uri, 'format': 'application/rdf+xml'}
