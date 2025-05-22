@@ -149,10 +149,11 @@ class SkosmosClient:
 
         payload = {'uri': uri, 'format': 'application/rdf+xml'}
 
-        if vocid is not None:
-            url = self.api_base + vocid + '/data'
-        else:
-            url = self.api_base + 'data'
+        url = (
+            f'{self.api_base}{vocid}/data'
+            if vocid is not None
+            else f'{self.api_base}data'
+        )
 
         req = requests.get(url, params=payload, timeout=REQUESTS_TIMEOUT)
         req.raise_for_status()
