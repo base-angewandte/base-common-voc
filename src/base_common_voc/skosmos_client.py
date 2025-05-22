@@ -24,7 +24,7 @@ from rdflib.namespace import SKOS
 # Default API base URL
 API_BASE = 'https://voc.uni-ak.ac.at/skosmos/rest/v1/'
 
-REQUESTS_TIMEOUT = 10
+REQUESTS_TIMEOUT = 30
 
 
 class SkosmosConcept:
